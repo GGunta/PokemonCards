@@ -8,7 +8,7 @@
 import UIKit
 
 class PokemonsViewController: UIViewController {
-
+    
     @IBOutlet weak var tableViewOutlet: UITableView!
     var pokey: [Pokemon] = []
     
@@ -17,7 +17,7 @@ class PokemonsViewController: UIViewController {
         self.title = "Pokemon List"
         getPokemonData()
     }
-
+    
     func getPokemonData() {
         let url = URL(string: "https://api.pokemontcg.io/v1/cards")!
         NetworkController.performRequest(for: url, httpMethod: .get) { (data, err) in
@@ -59,7 +59,7 @@ extension PokemonsViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         let poke = pokey[indexPath.row]
-        cell.setupUI(with: poke)
+        cell.setupUI(withDataFrom: poke)
         
         return cell
     }
@@ -71,18 +71,17 @@ extension PokemonsViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        
-       // tableViewOutlet.indexPathForSelectedRow
-        
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "detailedPokeyCard" {
+            if let detailVC = segue.destination as? DetailViewController, let row = tableViewOutlet.indexPathForSelectedRow?.row {
+                detailVC.pokemon = pokey[row]
+            }
+        }
     }
     
-    
-    
 }
+
 
 

@@ -8,22 +8,27 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var pokeyImageView: UIImageView!
+    @IBOutlet weak var pokeyNameLabel: UILabel!
+    
+    var pokemon: Pokemon!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        if let pokemon = pokemon {
+            ImageController.getImage(for: pokemon.image) { (image) in
+                self.pokeyImageView.image = image
+            }
+        }else{
+            print("pokemon image is nil")
+        }
+        
+        if pokemon != nil {
+            pokeyNameLabel.text = "Name: " + pokemon.name + ", \nid: " + pokemon.id
+        }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
+
+

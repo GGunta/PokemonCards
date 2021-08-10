@@ -8,7 +8,7 @@
 import UIKit
 
 class PokeyTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var pokeyImageView: UIImageView!
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,27 +18,27 @@ class PokeyTableViewCell: UITableViewCell {
     @IBOutlet weak var subtypeLabel: UILabel!
     
     
-    func setupUI(with: Pokemon) {
-        nameLabel.text = "Name: " + with.name
-        hpLabel.text = "Card value: " + with.number
+    func setupUI(withDataFrom: Pokemon) {
+        nameLabel.text = "Name: " + withDataFrom.name
+        hpLabel.text = "Card value: " + withDataFrom.number
         
-        ImageController.getImage(for: with.image) { image in
+        ImageController.getImage(for: withDataFrom.image) { image in
             self.pokeyImageView.image = image  
         }
         
-        if let subtype = with.subtype {
+        if let subtype = withDataFrom.subtype {
             subtypeLabel.text = "Card: " + subtype
         }
         
-        if let supertype = with.subtype {
+        if let supertype = withDataFrom.subtype {
             supertypeLabel.text = "Type: " + supertype
             
-            if with.supertype == "Trainer" {
+            if withDataFrom.supertype == "Trainer" {
                 contentView.backgroundColor = .blue
             }else{
                 contentView.backgroundColor = .systemYellow
             }
-            }
         }
     }
+}
 
