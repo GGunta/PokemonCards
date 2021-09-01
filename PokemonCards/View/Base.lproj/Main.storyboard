@@ -139,7 +139,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="s9a-Mu-H4h">
                                                 <rect key="frame" x="0.0" y="0.0" width="260" height="285"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="240" id="KsV-cO-kpm"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="240" id="KsV-cO-kpm"/>
                                                     <constraint firstAttribute="height" constant="285" id="NgG-nB-Xgx"/>
                                                 </constraints>
                                             </imageView>
